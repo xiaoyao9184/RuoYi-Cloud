@@ -5,6 +5,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import com.ruoyi.common.security.annotation.EnableRyFeignClients;
 
+import java.util.HashMap;
+
 /**
  * 认证授权中心
  * 
@@ -16,7 +18,11 @@ public class RuoYiAuthApplication
 {
     public static void main(String[] args)
     {
-        SpringApplication.run(RuoYiAuthApplication.class, args);
+        SpringApplication app = new SpringApplication(RuoYiAuthApplication.class);
+        app.setDefaultProperties(new HashMap<String, Object>() {{
+            put("spring.profiles.default", "dev");
+        }});
+        app.run(args);
         System.out.println("(♥◠‿◠)ﾉﾞ  认证授权中心启动成功   ლ(´ڡ`ლ)ﾞ  \n" +
                 " .-------.       ____     __        \n" +
                 " |  _ _   \\      \\   \\   /  /    \n" +

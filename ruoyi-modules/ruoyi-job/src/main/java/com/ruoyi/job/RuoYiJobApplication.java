@@ -6,6 +6,8 @@ import com.ruoyi.common.security.annotation.EnableCustomConfig;
 import com.ruoyi.common.security.annotation.EnableRyFeignClients;
 import com.ruoyi.common.swagger.annotation.EnableCustomSwagger2;
 
+import java.util.HashMap;
+
 /**
  * 定时任务
  * 
@@ -19,7 +21,11 @@ public class RuoYiJobApplication
 {
     public static void main(String[] args)
     {
-        SpringApplication.run(RuoYiJobApplication.class, args);
+        SpringApplication app = new SpringApplication(RuoYiJobApplication.class);
+        app.setDefaultProperties(new HashMap<String, Object>() {{
+            put("spring.profiles.default", "dev");
+        }});
+        app.run(args);
         System.out.println("(♥◠‿◠)ﾉﾞ  定时任务模块启动成功   ლ(´ڡ`ლ)ﾞ  \n" +
                 " .-------.       ____     __        \n" +
                 " |  _ _   \\      \\   \\   /  /    \n" +

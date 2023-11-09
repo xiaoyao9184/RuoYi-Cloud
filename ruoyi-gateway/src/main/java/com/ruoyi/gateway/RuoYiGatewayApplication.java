@@ -4,6 +4,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 
+import java.util.HashMap;
+
 /**
  * 网关启动程序
  * 
@@ -14,7 +16,11 @@ public class RuoYiGatewayApplication
 {
     public static void main(String[] args)
     {
-        SpringApplication.run(RuoYiGatewayApplication.class, args);
+        SpringApplication app = new SpringApplication(RuoYiGatewayApplication.class);
+        app.setDefaultProperties(new HashMap<String, Object>() {{
+            put("spring.profiles.default", "dev");
+        }});
+        app.run(args);
         System.out.println("(♥◠‿◠)ﾉﾞ  若依网关启动成功   ლ(´ڡ`ლ)ﾞ  \n" +
                 " .-------.       ____     __        \n" +
                 " |  _ _   \\      \\   \\   /  /    \n" +

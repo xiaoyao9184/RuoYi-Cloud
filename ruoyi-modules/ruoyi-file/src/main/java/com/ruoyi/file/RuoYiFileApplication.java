@@ -5,6 +5,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import com.ruoyi.common.swagger.annotation.EnableCustomSwagger2;
 
+import java.util.HashMap;
+
 /**
  * 文件服务
  * 
@@ -16,7 +18,11 @@ public class RuoYiFileApplication
 {
     public static void main(String[] args)
     {
-        SpringApplication.run(RuoYiFileApplication.class, args);
+        SpringApplication app = new SpringApplication(RuoYiFileApplication.class);
+        app.setDefaultProperties(new HashMap<String, Object>() {{
+            put("spring.profiles.default", "dev");
+        }});
+        app.run(args);
         System.out.println("(♥◠‿◠)ﾉﾞ  文件服务模块启动成功   ლ(´ڡ`ლ)ﾞ  \n" +
                 " .-------.       ____     __        \n" +
                 " |  _ _   \\      \\   \\   /  /    \n" +

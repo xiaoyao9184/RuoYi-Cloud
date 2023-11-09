@@ -6,6 +6,8 @@ import com.ruoyi.common.security.annotation.EnableCustomConfig;
 import com.ruoyi.common.security.annotation.EnableRyFeignClients;
 import com.ruoyi.common.swagger.annotation.EnableCustomSwagger2;
 
+import java.util.HashMap;
+
 /**
  * 代码生成
  * 
@@ -19,7 +21,11 @@ public class RuoYiGenApplication
 {
     public static void main(String[] args)
     {
-        SpringApplication.run(RuoYiGenApplication.class, args);
+        SpringApplication app = new SpringApplication(RuoYiGenApplication.class);
+        app.setDefaultProperties(new HashMap<String, Object>() {{
+            put("spring.profiles.default", "dev");
+        }});
+        app.run(args);
         System.out.println("(♥◠‿◠)ﾉﾞ  代码生成模块启动成功   ლ(´ڡ`ლ)ﾞ  \n" +
                 " .-------.       ____     __        \n" +
                 " |  _ _   \\      \\   \\   /  /    \n" +
